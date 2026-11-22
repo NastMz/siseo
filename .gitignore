@@ -1,10 +1,25 @@
-.idea
-*.wav
-__pycache__
-*.pyc
-venv/
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
 build/
-*.egg-info
-.DS_Store
+dist/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+.venv-*/
+venv/
+
+# Local data (recordings and profiles live in ~/.siseo by default)
 *.db
 *.sqlite3
+*.wav
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
