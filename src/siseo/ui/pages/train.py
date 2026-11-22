@@ -148,14 +148,14 @@ class TrainPage(QWidget):
         right.addWidget(head)
 
         signal_panel = Panel("Última toma · forma de onda y bandas FFT")
-        self.wave = WaveformView(min_height=96)
-        self.spec = SpectrogramView(min_height=120)
+        self.wave = WaveformView(min_height=78)
+        self.spec = SpectrogramView(min_height=112)
         signal_panel.body.addWidget(self.wave)
         signal_panel.body.addWidget(self.spec)
         right.addWidget(signal_panel, 1)
 
         fp_panel = Panel("Huella espectral · 24 bandas de 80 Hz a 7.6 kHz")
-        self.fingerprint = BandBars(min_height=82)
+        self.fingerprint = BandBars(min_height=58)
         fp_panel.body.addWidget(self.fingerprint)
         fp_panel.body.addWidget(
             label("Barras: energía media de cada banda en todas las tomas · línea: la última toma.", "hint")
