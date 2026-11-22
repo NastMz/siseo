@@ -57,10 +57,10 @@ class DistanceBars(QWidget):
         self.scores: list[Score] = []
         self.winner: str | None = None
         self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
-        self.setFixedHeight(self.ROW * 5 + 22)
+        self.setFixedHeight(self.ROW * 5 + 38)
 
     def sizeHint(self) -> QSize:
-        return QSize(320, self.ROW * 5 + 22)
+        return QSize(320, self.ROW * 5 + 38)
 
     def set_scores(self, scores: Sequence[Score], winner: str | None) -> None:
         self.scores, self.winner = list(scores), winner
@@ -103,7 +103,8 @@ class DistanceBars(QWidget):
             p.drawText(QRectF(w - value_w, y, value_w, 20), Qt.AlignmentFlag.AlignVCenter | Qt.AlignmentFlag.AlignRight, f"{s.distance:.2f}")
         p.setPen(theme.color(theme.FAINT))
         p.setFont(theme.font("body", 8))
-        p.drawText(QRectF(label_w, self.ROW * len(self.scores) + 2, track_w, 16), Qt.AlignmentFlag.AlignLeft,
+        p.drawText(QRectF(0, self.ROW * len(self.scores) + 2, w, 34),
+                   Qt.AlignmentFlag.AlignLeft | Qt.TextFlag.TextWordWrap,
                    "barra: distancia al comando · marca: umbral de aceptación")
         p.end()
 
