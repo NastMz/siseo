@@ -70,7 +70,9 @@ class SnakeGame:
         return self.rng.choice(free) if free else None
 
     # --- input ---------------------------------------------------------
-    def _last_heading(self) -> Cell:
+    @property
+    def heading(self) -> Cell:
+        """Direction the snake will have after the queued turns."""
         return self._queue[-1] if self._queue else self.direction
 
     def act(self, action: str | None) -> bool:
@@ -89,7 +91,10 @@ class SnakeGame:
         if action not in DIRECTIONS or self.status == OVER:
             return False
         new = DIRECTIONS[action]
-        last = self._last_heading()
+        last = self.heading
+        if new == last and self.status in (READY, PAUSED):
+            self.status = RUNNING  # saying the current heading just starts moving
+            return True
         if new == last or (new[0] == -last[0] and new[1] == -last[1]):
             return False
         self._queue.append(new)

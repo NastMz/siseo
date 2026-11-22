@@ -39,6 +39,13 @@ def test_reverse_and_repeated_turns_are_ignored():
     assert g.head == (4, 5) and g.direction == (-1, 0)
 
 
+def test_current_heading_starts_a_ready_game():
+    g = make()
+    assert g.act("right")
+    assert g.status == RUNNING
+    assert not g.act("right")
+
+
 def test_eating_grows_scores_and_respawns_food():
     g = make()
     g.food = (6, 4)
